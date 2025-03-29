@@ -17,6 +17,8 @@ end
 target 'Instagram' do
   config = use_native_modules!
 
+  use_frameworks! :linkage => :static 
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
@@ -32,4 +34,9 @@ target 'Instagram' do
       # :ccache_enabled => true
     )
   end
+end
+
+target 'LiveScoreExtension' do
+  use_frameworks! :linkage => :static
+  pod 'ActivityKit'   # Only include ActivityKit
 end
