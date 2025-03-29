@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {Text, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {background} from '../utils/global';
 
 type RootStackParamList = {
   Home: undefined;
@@ -13,15 +14,10 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-const HomeScreen: React.FC<Props> = ({navigation}) => {
+const HomeScreen: React.FC<Props> = ({}) => {
   return (
-    <View>
-      <Text className="text-red-400">Home Screen</Text>
-
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
+    <View className="flex-1" style={{backgroundColor: background}}>
+      <Text>Home</Text>
     </View>
   );
 };

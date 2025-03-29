@@ -7,15 +7,16 @@ import AppNavigator from './navigation/AppNavigator';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {StatusBar} from 'react-native';
 import '../global.css';
+import {background} from './utils/global';
 
 const App: React.FC = () => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <SafeAreaView className="flex-1" style={{backgroundColor: background}}>
         <StatusBar
           translucent
           backgroundColor="transparent"
-          barStyle="dark-content"
+          barStyle="light-content"
         />
         <NavigationContainer>
           <AppNavigator />
