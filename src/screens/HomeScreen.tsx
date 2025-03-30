@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Button, NativeModules, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {background} from '../utils/global';
 
@@ -8,6 +8,8 @@ type RootStackParamList = {
   Profile: undefined;
 };
 
+const {LiveScore} = NativeModules;
+
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 type Props = {
@@ -15,9 +17,13 @@ type Props = {
 };
 
 const HomeScreen: React.FC<Props> = ({}) => {
+  const handleStartActivity = () => {
+    LiveScore?.startActivity?.();
+  };
+
   return (
     <View className="flex-1" style={{backgroundColor: background}}>
-      <Text>Home</Text>
+      <Button title="Start Activity" onPress={handleStartActivity} />
     </View>
   );
 };
