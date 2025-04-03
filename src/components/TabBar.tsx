@@ -7,18 +7,21 @@ import {
   active,
   background,
   backgroundLight,
-  inactive,
   primary,
+  screens,
 } from '../utils/global';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
   const {colors} = useTheme();
   const {buildHref} = useLinkBuilder();
 
   return (
-    <View style={{backgroundColor: background}}>
+    <View
+      style={{backgroundColor: background}}
+      className="flex flex-row justify-center items-center">
       <View
-        className="m-2 rounded-full flex-row"
+        className="m-2 rounded-full flex-row justify-around w-4/5"
         style={{backgroundColor: backgroundLight}}>
         {state.routes.map((route, index) => {
           const {options} = descriptors[route.key];
@@ -43,12 +46,8 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
             }
           };
 
-          const onLongPress = () => {
-            navigation.emit({
-              type: 'tabLongPress',
-              target: route.key,
-            });
-          };
+          const onLongPress = () =>
+            navigation.emit({type: 'tabLongPress', target: route.key});
 
           return (
             <PlatformPressable
@@ -58,31 +57,36 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
               testID={options.tabBarButtonTestID}
               onPress={onPress}
               onLongPress={onLongPress}
-              className="flex-1 items-center justify-center p-3"
+              className="flex items-center justify-center p-3"
               key={route.key}>
               <View
-                className="flex flex-row gap-1 rounded-full items-center justify-center py-2 px-3"
-                style={{
-                  backgroundColor: isFocused ? active : backgroundLight,
-                }}>
-                {options.tabBarIcon &&
-                  options.tabBarIcon({
-                    focused: isFocused,
-                    color: isFocused ? colors.primary : colors.text,
-                    size: 24,
-                  })}
-                <Text
-                  className="p-1 rounded-full"
-                  style={{color: isFocused ? primary : inactive}}>
-                  {typeof label === 'function'
-                    ? label({
-                        focused: isFocused,
-                        color: isFocused ? colors.primary : colors.text,
-                        position: 'beside-icon',
-                        children: '',
-                      })
-                    : label}
-                </Text>
+                className="flex flex-row gap-2 rounded-full items-center justify-center py-2 px-3"
+                style={{backgroundColor: isFocused ? active : backgroundLight}}>
+                <IonIcon
+                  size={20}
+                  color={isFocused ? primary : 'gray'}
+                  name={
+                    {
+                      [screens.Home]: 'home',
+                      [screens.Match]: 'baseball',
+                      [screens.Stats]: 'pie-chart',
+                      [screens.Profile]: 'person-circle',
+                    }[typeof label !== 'function' ? label : screens.Home] ||
+                    'home'
+                  }
+                />
+                {isFocused && (
+                  <Text className="p-1 rounded-full" style={{color: primary}}>
+                    {typeof label === 'function'
+                      ? label({
+                          focused: isFocused,
+                          color: colors.primary,
+                          position: 'beside-icon',
+                          children: '',
+                        })
+                      : label}
+                  </Text>
+                )}
               </View>
             </PlatformPressable>
           );

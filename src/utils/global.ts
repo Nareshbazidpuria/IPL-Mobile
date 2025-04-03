@@ -11,4 +11,10 @@ export const primary = '##020619',
   success = '#4CAF50',
   info = '#2196F3',
   lightGray = '#BDBDBD',
-  darkGray = '#757575';
+  darkGray = '#757575',
+  screens = {
+    Home: 'Home',
+    Match: 'Match',
+    Stats: 'Stats',
+    Profile: 'Profile',
+  };
