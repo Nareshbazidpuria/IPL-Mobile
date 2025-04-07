@@ -19,9 +19,10 @@ const MatchCard: React.FC<Props> = ({pin, onPress}) => {
   return (
     <Pressable onPress={onPress}>
       <Animated.View
-        className="rounded-3xl p-4 w-72 relative h-[130]"
+        className="rounded-3xl p-4 relative h-[170]"
         // eslint-disable-next-line react-native/no-inline-styles
-        style={{backgroundColor: active, width: 250}}>
+        style={{backgroundColor: active, width: 300}}>
+        <Text className="text-red-500 text-lg font-bold mb-2">LIVE</Text>
         <Text className="text-gray-800 text-sm font-semibold">
           3rd ODI : Pak Tour of India 2023
         </Text>

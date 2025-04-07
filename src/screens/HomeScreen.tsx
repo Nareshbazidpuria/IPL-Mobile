@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Dimensions,
   FlatList,
   NativeModules,
   Platform,
@@ -13,6 +14,7 @@ import {background, MatchDetails} from '../utils/global';
 import MatchCard from '../components/MatchCard';
 import {RootStackParamList} from '../utils/types';
 import Card from '../components/Card';
+import ImageCard from '../components/ImageCard';
 
 const {LiveScore, ExitApp} = NativeModules;
 
@@ -37,7 +39,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <ScrollView className="flex-1 p-4" style={{backgroundColor: background}}>
-      <View className="h-[130] mb-5">
+      <View className="h-[170] mb-5">
         <FlatList
           data={[1, 2, 3, 4, 5, 6, 7]}
           keyExtractor={item => item.toString()}
@@ -52,7 +54,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
               onPress={() => navigation.navigate(MatchDetails)}
             />
           )}
-          snapToInterval={260}
+          snapToInterval={310}
           decelerationRate="fast"
         />
       </View>
@@ -105,7 +107,13 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         </Pressable>
       </View>
       {!viewAll ? (
-        <View className="h-[130] mb-5">
+        <View
+          className="mb-5"
+          style={{
+            height: viewAll
+              ? Dimensions.get('screen').width / 2 - 20
+              : Dimensions.get('screen').width / 2 + 10,
+          }}>
           <FlatList
             data={[1, 2, 3, 4, 5, 6, 7, 8]}
             keyExtractor={item => item.toString()}
@@ -115,7 +123,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
             // eslint-disable-next-line react-native/no-inline-styles
             contentContainerStyle={{gap: 10}}
             renderItem={({index}) => (
-              <Card
+              <ImageCard
                 onPress={() => navigation.navigate(MatchDetails)}
                 expanded={viewAll}
                 key={index}
@@ -128,7 +136,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       ) : (
         <View className="flex flex-row mb-5 gap-3 flex-wrap">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
-            <Card
+            <ImageCard
               expanded={viewAll}
               key={index}
               onPress={() => navigation.navigate(MatchDetails)}
@@ -145,7 +153,13 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         </Pressable>
       </View>
       {!viewAll ? (
-        <View className="h-[130] mb-5">
+        <View
+          className="mb-5"
+          style={{
+            height: viewAll
+              ? Dimensions.get('screen').width / 2 - 20
+              : Dimensions.get('screen').width / 2 + 10,
+          }}>
           <FlatList
             data={[1, 2, 3, 4, 5, 6, 7, 8]}
             keyExtractor={item => item.toString()}
@@ -155,7 +169,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
             // eslint-disable-next-line react-native/no-inline-styles
             contentContainerStyle={{gap: 10}}
             renderItem={({index}) => (
-              <Card
+              <ImageCard
                 onPress={() => navigation.navigate(MatchDetails)}
                 expanded={viewAll}
                 key={index}
@@ -168,7 +182,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       ) : (
         <View className="flex flex-row mb-5 gap-3 flex-wrap">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
-            <Card
+            <ImageCard
               expanded={viewAll}
               key={index}
               onPress={() => navigation.navigate(MatchDetails)}
