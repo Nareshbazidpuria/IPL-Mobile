@@ -4,40 +4,24 @@ import {
   Image,
   Pressable,
   GestureResponderEvent,
-  // Dimensions,
   Animated,
-  // Easing,
 } from 'react-native';
-import React, {
-  useRef,
-  // useState
-} from 'react';
+import React from 'react';
 import {active, background} from '../utils/global';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 type Props = {
+  pin: (event: GestureResponderEvent) => void;
   onPress: (event: GestureResponderEvent) => void;
 };
 
-const MatchCard: React.FC<Props> = ({onPress}) => {
-  // const [expanded, setExpanded] = useState(false);
-
-  const widthAnim = useRef(new Animated.Value(250)).current;
-
-  const toggleExpand = () => {
-    // Animated.timing(widthAnim, {
-    //   toValue: expanded ? 250 : Dimensions.get('window').width - 20,
-    //   duration: 200,
-    //   easing: Easing.inOut(Easing.ease),
-    //   useNativeDriver: false, // Width animation needs this to be false
-    // }).start();
-    // setExpanded(!expanded);
-  };
+const MatchCard: React.FC<Props> = ({pin, onPress}) => {
   return (
-    <Pressable onPress={toggleExpand}>
+    <Pressable onPress={onPress}>
       <Animated.View
         className="rounded-3xl p-4 w-72 relative h-[130]"
-        style={{backgroundColor: active, width: widthAnim}}>
+        // eslint-disable-next-line react-native/no-inline-styles
+        style={{backgroundColor: active, width: 250}}>
         <Text className="text-gray-800 text-sm font-semibold">
           3rd ODI : Pak Tour of India 2023
         </Text>
@@ -74,7 +58,7 @@ const MatchCard: React.FC<Props> = ({onPress}) => {
         <Pressable
           className="absolute top-0 right-0 h-10 w-10 rounded-bl-3xl"
           style={{backgroundColor: background}}
-          onPress={onPress}>
+          onPress={pin}>
           <View
             style={{backgroundColor: active}}
             className="rounded-full ml-2 h-8 w-8 flex items-center justify-center">

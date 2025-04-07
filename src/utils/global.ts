@@ -12,9 +12,9 @@ export const primary = '##020619',
   info = '#2196F3',
   lightGray = '#BDBDBD',
   darkGray = '#757575',
-  screens = {
-    Home: 'Home',
-    Match: 'Match',
-    Stats: 'Stats',
-    Profile: 'Profile',
-  };
+  Home = 'Home',
+  Match = 'Match',
+  MatchDetails = 'MatchDetails',
+  Stats = 'Stats',
+  Profile = 'Profile',
+  screens = {Home, Match, Stats, Profile, MatchDetails};
