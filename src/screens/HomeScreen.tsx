@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  BackHandler,
   Dimensions,
   FlatList,
   NativeModules,
@@ -33,6 +34,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         console.warn('LiveScore module is not available');
       }
     } else {
+      BackHandler.exitApp();
       console.warn('LiveScore module is not available');
     }
   };
@@ -190,6 +192,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
           ))}
         </View>
       )}
+      <View className="h-24" />
     </ScrollView>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {background, backgroundLight} from '../utils/global';
+import {backgroundLight} from '../utils/global';
 
 type Props = {
   onPress: (event: GestureResponderEvent) => void;

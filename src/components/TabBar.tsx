@@ -1,16 +1,21 @@
 import * as React from 'react';
-import {View} from 'react-native';
-import {Text, PlatformPressable} from '@react-navigation/elements';
-import {useLinkBuilder, useTheme} from '@react-navigation/native';
+import {Pressable, View} from 'react-native';
+import {Text} from '@react-navigation/elements';
+import {useTheme} from '@react-navigation/native';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {active, background, primary, screens} from '../utils/global';
+import {
+  active,
+  background,
+  backgroundLight,
+  primary,
+  screens,
+} from '../utils/global';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
 // import LinearGradient from 'react-native-linear-gradient';
 
 const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
   const {colors} = useTheme();
-  const {buildHref} = useLinkBuilder();
 
   return (
     <View className="absolute bottom-0 w-full">
@@ -24,8 +29,8 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
           justifyContent: 'center',
         }}>
         <View
-          className="m-2 rounded-full flex-row justify-around w-4/5 z-10 mb-6"
-          style={{backgroundColor: background}}>
+          className="m-2 rounded-full flex-row justify-around w-4/5 z-10 mb-5"
+          style={{backgroundColor: backgroundLight}}>
           {state.routes.map((route, index) => {
             const {options} = descriptors[route.key];
             const label =
@@ -53,8 +58,8 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
               navigation.emit({type: 'tabLongPress', target: route.key});
 
             return (
-              <PlatformPressable
-                href={buildHref(route.name, route.params)}
+              <Pressable
+                // href={buildHref(route.name, route.params)}
                 accessibilityState={isFocused ? {selected: true} : {}}
                 accessibilityLabel={options.tabBarAccessibilityLabel}
                 testID={options.tabBarButtonTestID}
@@ -64,7 +69,9 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
                 key={route.key}>
                 <View
                   className="flex flex-row gap-2 rounded-full items-center justify-center py-2 px-3"
-                  style={{backgroundColor: isFocused ? active : background}}>
+                  style={{
+                    backgroundColor: isFocused ? active : backgroundLight,
+                  }}>
                   <IonIcon
                     size={20}
                     color={isFocused ? primary : 'gray'}
@@ -91,7 +98,7 @@ const TabBar = ({descriptors, navigation, state}: BottomTabBarProps) => {
                     </Text>
                   )}
                 </View>
-              </PlatformPressable>
+              </Pressable>
             );
           })}
         </View>

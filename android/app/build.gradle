@@ -116,4 +116,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    implementation project(':react-native-vector-icons')
+    implementation "com.facebook.react:react-native:+"
 }
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StatusBar, View} from 'react-native';
+import {ScrollView, StatusBar, Text, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {active, background} from '../utils/global';
 import {RootStackParamList} from '../utils/types';
@@ -24,9 +24,9 @@ const MatchDetailsScreen: React.FC<Props> = ({}) => {
   return (
     <ScrollView className="flex-1" style={{backgroundColor: background}}>
       <StatusBar barStyle="dark-content" />
-      <View
-        style={{backgroundColor: active}}
-        className="h-56 rounded-b-3xl"></View>
+      <View style={{backgroundColor: active}} className="h-56 rounded-b-3xl">
+        <Text>H</Text>
+      </View>
     </ScrollView>
   );
 };

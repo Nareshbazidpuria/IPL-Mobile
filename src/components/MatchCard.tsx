@@ -72,11 +72,11 @@ const MatchCard: React.FC<Props> = ({pin, onPress}) => {
           </View>
         </Pressable>
         <View
-          className="absolute top-10 h-10 w-5 right-0"
+          className="absolute top-10 h-5 w-6 -right-1"
           style={{backgroundColor: background}}
         />
         <View
-          className="absolute top-10 h-10 w-5 right-0 rounded-tr-3xl"
+          className="absolute top-10 h-5 w-5 right-0 rounded-tr-3xl"
           style={{backgroundColor: active}}
         />
         <View
