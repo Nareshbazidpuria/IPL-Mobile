@@ -24,7 +24,7 @@
         </intent-filter>
       </activity>
       <service android:name=".FloatingViewService"
-        android:enabled="true"
-        android:exported="false"/>
+         android:enabled="true"
+         android:exported="false"/>
     </application>
 </manifest>
