@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-  BackHandler,
+  // BackHandler,
   Dimensions,
   FlatList,
   NativeModules,
@@ -17,14 +17,14 @@ import {RootStackParamList} from '../utils/types';
 import Card from '../components/Card';
 import ImageCard from '../components/ImageCard';
 
-const {LiveScore, ExitApp} = NativeModules;
+const {LiveScore, ExitApp, FloatingOverlayModule} = NativeModules;
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 type Props = {navigation: NavigationProp};
 
 const HomeScreen: React.FC<Props> = ({navigation}) => {
   const [viewAll, setViewAll] = useState<boolean>(false);
-  const handleStartActivity = () => {
+  const handleStartActivity = async () => {
     if (Platform.OS === 'ios') {
       if (LiveScore?.startActivity) {
         LiveScore.startActivity();
@@ -34,8 +34,14 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         console.warn('LiveScore module is not available');
       }
     } else {
-      BackHandler.exitApp();
-      console.warn('LiveScore module is not available');
+      const granted = await FloatingOverlayModule.checkPermission();
+      if (!granted) {
+        FloatingOverlayModule.requestPermission();
+      } else {
+        FloatingOverlayModule.startService(); // start the overlay
+      }
+      // BackHandler.exitApp();
+      // console.warn('LiveScore module is not available');
     }
   };
 
